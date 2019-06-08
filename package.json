@@ -1,0 +1,22 @@
+{
+  "name": "inalambria-test",
+  "version": "1.0.0",
+  "description": "Este proyecto es una prueba tecnica para inalambria",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aczuleta/Inalambria-test.git"
+  },
+  "keywords": [
+    "techtest"
+  ],
+  "author": "AZ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aczuleta/Inalambria-test/issues"
+  },
+  "homepage": "https://github.com/aczuleta/Inalambria-test#readme"
+}
