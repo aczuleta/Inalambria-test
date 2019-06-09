@@ -8,6 +8,11 @@
     "restart": "nodemon --exec  babel-node src/index.js",
     "test": "test"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "grunt pre-commit"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aczuleta/Inalambria-test.git"
@@ -30,6 +35,8 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "graphql": "^14.3.1",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-type-datetime": "^0.2.4",
     "helmet": "^3.18.0",
     "knex": "^0.17.3",
     "moment": "^2.24.0",
@@ -42,6 +49,11 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "eslint": "^5.16.0",
+    "grunt": "^1.0.4",
+    "grunt-eslint": "^21.0.0",
+    "grunt-prettier": "^1.2.0",
+    "husky": "^2.3.0",
+    "load-grunt-tasks": "^4.0.0",
     "nodemon": "^1.19.1",
     "prettier": "1.17.1"
   }

@@ -1,5 +1,8 @@
 import { gql } from 'apollo-server-express';
-import fs from 'fs';
+import bookSchema from '../services/books/schema';
+import usuarioSchema from '../services/usuarios/schema';
+import reservaSchema from '../services/reservas/schema';
+
 
 
 const dirServices = '../services';
@@ -18,4 +21,4 @@ const linkSchema = gql`
 `;
 
 let exports = [linkSchema];
-export default [linkSchema];
+export default [linkSchema, bookSchema, usuarioSchema, reservaSchema];
