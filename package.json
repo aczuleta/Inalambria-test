@@ -4,9 +4,13 @@
   "description": "Este proyecto es una prueba tecnica para inalambria",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "npm run-script build && npm run-script serve",
     "restart": "nodemon --exec  babel-node src/index.js",
-    "test": "test"
+    "test": "test",
+    "clean": "rm -rf dist && mkdir dist",
+    "build-server": "babel src --out-dir dist",
+    "build": "npm run-script clean && npm run-script build-server",
+    "serve": "node ./dist/index.js"
   },
   "husky": {
     "hooks": {
@@ -48,6 +52,8 @@
     "@babel/node": "^7.4.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/runtime": "^7.0.0-beta.55",
     "eslint": "^5.16.0",
     "grunt": "^1.0.4",
     "grunt-eslint": "^21.0.0",
