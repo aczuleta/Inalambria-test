@@ -29,6 +29,8 @@ const Server = () => {
         typeDefs: schema,
         resolvers,
         context: {},
+        introspection: true, // enables introspection of the schema
+        playground: true,
     });
 
     function start(){
