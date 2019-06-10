@@ -102,15 +102,15 @@ var _default = {
       var _createBook = (0, _asyncToGenerator2["default"])(
       /*#__PURE__*/
       _regenerator["default"].mark(function _callee3(parent, _ref5, _ref6) {
-        var title, ISBN, quantity, genre, author, pages, img, book, result;
+        var title, ISBN, quantity, genre, author, pages, cover, book, result;
         return _regenerator["default"].wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                title = _ref5.title, ISBN = _ref5.ISBN, quantity = _ref5.quantity, genre = _ref5.genre, author = _ref5.author, pages = _ref5.pages, img = _ref5.img;
+                title = _ref5.title, ISBN = _ref5.ISBN, quantity = _ref5.quantity, genre = _ref5.genre, author = _ref5.author, pages = _ref5.pages, cover = _ref5.cover;
                 (0, _objectDestructuringEmpty2["default"])(_ref6);
                 _context3.prev = 2;
-                book = (0, _model.bookModel)(title, ISBN, quantity, genre, author, pages, img);
+                book = (0, _model.bookModel)(title, ISBN, quantity, genre, author, pages, cover);
                 _context3.next = 6;
                 return booksRepository.createBook(book);
 
@@ -141,15 +141,15 @@ var _default = {
       var _updateBook = (0, _asyncToGenerator2["default"])(
       /*#__PURE__*/
       _regenerator["default"].mark(function _callee4(parent, _ref7, _ref8) {
-        var id, title, ISBN, quantity, genre, author, pages, book, result;
+        var id, title, ISBN, quantity, genre, author, pages, cover, book, result;
         return _regenerator["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                id = _ref7.id, title = _ref7.title, ISBN = _ref7.ISBN, quantity = _ref7.quantity, genre = _ref7.genre, author = _ref7.author, pages = _ref7.pages;
+                id = _ref7.id, title = _ref7.title, ISBN = _ref7.ISBN, quantity = _ref7.quantity, genre = _ref7.genre, author = _ref7.author, pages = _ref7.pages, cover = _ref7.cover;
                 (0, _objectDestructuringEmpty2["default"])(_ref8);
                 _context4.prev = 2;
-                book = (0, _model.bookModel)(title, ISBN, quantity, genre, author, pages);
+                book = (0, _model.bookModel)(title, ISBN, quantity, genre, author, pages, cover);
                 book.id = +id;
                 _context4.next = 7;
                 return booksRepository.updateBook(book);

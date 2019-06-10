@@ -14,7 +14,7 @@ var _apolloServerExpress = require("apollo-server-express");
 var _graphqlIsoDate = require("graphql-iso-date");
 
 function _templateObject() {
-  var data = (0, _taggedTemplateLiteral2["default"])(["\n    \n\n    extend type Query {\n        reservas: [reserva]!,\n        reserva(id:ID!): reserva!,\n        reservasUsuario(usuario:ID!):[reserva]!,\n        reservasLibro(libro:ID!):[reserva]!\n    }\n\n    extend type Mutation {\n        createReserva(idPersona:ID!, idLibro:ID!): ID!,\n        returnBook(id:ID!): ID!,\n        deleteReserva(id:ID!):ID!\n    }\n\n    scalar GraphQLDateTime\n    \n    type reserva {\n        id: ID!\n        idPersona: ID!\n        idLibro: ID!,\n        persona: usuario!,\n        libro: book!\n        fechaCheckout: GraphQLDateTime!, \n        fechaRetorno: GraphQLDateTime!, \n        fechaRetornado: GraphQLDateTime\n    }\n"]);
+  var data = (0, _taggedTemplateLiteral2["default"])(["\n    \n\n    extend type Query {\n        reservas: [reserva]!,\n        reserva(id:ID!): reserva!,\n        reservasUsuario(usuario:ID!):[reserva]!,\n        reservasLibro(libro:ID!):[reserva]!\n    }\n\n    extend type Mutation {\n        createReserva(idPersona:Int!, idLibro:Int!): ID!,\n        returnBook(id:ID!): ID!,\n        deleteReserva(id:ID!):ID!\n    }\n\n    type reserva {\n        id: ID!\n        idPersona: Int!\n        idLibro: Int!,\n        persona: usuario!,\n        libro: book!\n        fechaCheckout: String!, \n        fechaRetorno: String!, \n        fechaRetornado: String\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;

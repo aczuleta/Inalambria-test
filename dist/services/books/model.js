@@ -5,7 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.bookModel = void 0;
 
-var bookModel = function bookModel(title, ISBN, quantity, genre, author, pages, cover) {
+var bookModel = function bookModel(title, ISBN, quantity, genre, author, pages) {
+  var cover = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : "";
   return {
     title: title,
     ISBN: ISBN,

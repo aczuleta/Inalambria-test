@@ -72,6 +72,7 @@ export default {
                 * que equivale a la reserva que estamos por hacer
                 **/
                 book.quantity--;
+                console.log("este es el libro", book);
                 await bookRepository.updateBook(book);
 
                 /**

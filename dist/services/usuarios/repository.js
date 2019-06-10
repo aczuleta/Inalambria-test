@@ -73,13 +73,11 @@ var UsuariosRepository = function UsuariosRepository() {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return usuariosRepository.retrieve({
-                id: id
-              });
+              return usuariosRepository.getRawConnection().raw(_queries.queries.get_usuario, [id]);
 
             case 3:
               results = _context2.sent;
-              return _context2.abrupt("return", results[0]);
+              return _context2.abrupt("return", results[0][0]);
 
             case 7:
               _context2.prev = 7;
@@ -111,13 +109,11 @@ var UsuariosRepository = function UsuariosRepository() {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return usuariosRepository.retrieve({
-                username: username
-              });
+              return usuariosRepository.getRawConnection().raw(_queries.queries.get_by_name, [username]);
 
             case 3:
               results = _context3.sent;
-              return _context3.abrupt("return", results[0]);
+              return _context3.abrupt("return", results[0][0]);
 
             case 7:
               _context3.prev = 7;

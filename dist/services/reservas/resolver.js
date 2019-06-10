@@ -235,10 +235,11 @@ var _default = {
                 * que equivale a la reserva que estamos por hacer
                 **/
                 book.quantity--;
-                _context5.next = 16;
+                console.log("este es el libro", book);
+                _context5.next = 17;
                 return bookRepository.updateBook(book);
 
-              case 16:
+              case 17:
                 /**
                  * Finalmente sí procedemos a realizar la reserva 
                  */
@@ -248,24 +249,24 @@ var _default = {
                 returnDate = (0, _moment["default"])().add(7, 'days').format("YYYY-MM-DD HH:mm:ss");
                 returnDate = new Date(returnDate);
                 reserva = (0, _model.reservaModel)(idLibro, idPersona, checkout, returnDate, null);
-                _context5.next = 23;
+                _context5.next = 24;
                 return reservasRepository.createReserva(reserva);
 
-              case 23:
+              case 24:
                 result = _context5.sent;
                 return _context5.abrupt("return", result);
 
-              case 27:
-                _context5.prev = 27;
+              case 28:
+                _context5.prev = 28;
                 _context5.t0 = _context5["catch"](2);
                 throw _context5.t0;
 
-              case 30:
+              case 31:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[2, 27]]);
+        }, _callee5, null, [[2, 28]]);
       }));
 
       function createReserva(_x13, _x14, _x15) {
@@ -323,7 +324,7 @@ var _default = {
 
               case 23:
                 _context6.next = 25;
-                return bookRepository.getBook(reserva.idLibro);
+                return bookRepository.getBook(+reserva.idLibro);
 
               case 25:
                 book = _context6.sent;

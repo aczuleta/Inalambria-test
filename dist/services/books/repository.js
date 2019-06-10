@@ -40,11 +40,11 @@ var BooksRepository = function BooksRepository() {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return booksRepository.retrieve();
+              return booksRepository.getRawConnection().raw(_queries.queries.get_books, []);
 
             case 3:
               results = _context.sent;
-              return _context.abrupt("return", results);
+              return _context.abrupt("return", results[0]);
 
             case 7:
               _context.prev = 7;
@@ -76,13 +76,11 @@ var BooksRepository = function BooksRepository() {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return booksRepository.retrieve({
-                id: id
-              });
+              return booksRepository.getRawConnection().raw(_queries.queries.get_book, [id]);
 
             case 3:
               results = _context2.sent;
-              return _context2.abrupt("return", results[0]);
+              return _context2.abrupt("return", results[0][0]);
 
             case 7:
               _context2.prev = 7;
@@ -107,30 +105,50 @@ var BooksRepository = function BooksRepository() {
     _updateBook = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
     _regenerator["default"].mark(function _callee3(book) {
-      var editedBook;
+      var url, editedBook;
       return _regenerator["default"].wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.prev = 0;
-              _context3.next = 3;
-              return booksRepository.getRawConnection().raw(_queries.queries.update_book, [book.title, book.ISBN, book.quantity, book.genre, book.author, book.pages, book.id]);
 
-            case 3:
+              if (book.cover.includes("techtest-aczc.s3.us-west-2.amazonaws.com")) {
+                _context3.next = 8;
+                break;
+              }
+
+              _context3.next = 4;
+              return fn.uploadToS3(book.cover, book.title);
+
+            case 4:
+              url = _context3.sent;
+              url = url.imageUrl;
+              _context3.next = 9;
+              break;
+
+            case 8:
+              url = book.cover;
+
+            case 9:
+              book.cover = url;
+              _context3.next = 12;
+              return booksRepository.getRawConnection().raw(_queries.queries.update_book, [book.title, book.ISBN, book.quantity, book.genre, book.author, book.pages, book.cover, book.id]);
+
+            case 12:
               editedBook = _context3.sent;
               return _context3.abrupt("return", book.id);
 
-            case 7:
-              _context3.prev = 7;
+            case 16:
+              _context3.prev = 16;
               _context3.t0 = _context3["catch"](0);
               throw _context3.t0;
 
-            case 10:
+            case 19:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[0, 7]]);
+      }, _callee3, null, [[0, 16]]);
     }));
     return _updateBook.apply(this, arguments);
   }
@@ -156,7 +174,7 @@ var BooksRepository = function BooksRepository() {
               }
 
               _context4.next = 4;
-              return fn.uploadToS3(move.imageRoute, book.title);
+              return fn.uploadToS3(book.cover, book.title);
 
             case 4:
               _context4.t0 = _context4.sent;

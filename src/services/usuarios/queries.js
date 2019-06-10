@@ -10,5 +10,9 @@ export const queries = {
                   WHERE t1.id = ?`,
 
     delete_usuario: `DELETE FROM Library.usuarios 
-                  WHERE id = ?`
+                  WHERE id = ?`,
+    get_by_name: `SELECT * FROM Library.usuarios t1
+                WHERE t1.username = ?`,
+    get_usuario: `SELECT * FROM Library.usuarios t1
+                 WHERE t1.id = ?`
 }

@@ -17,8 +17,8 @@ export const UsuariosRepository = () => {
 
     async function getUsuario(id){
         try{
-            let results = await usuariosRepository.retrieve({id});
-            return results[0];
+            let results = await usuariosRepository.getRawConnection().raw(queries.get_usuario,[id]);
+            return results[0][0];
         } catch(err){
             throw err;
         }
@@ -26,8 +26,8 @@ export const UsuariosRepository = () => {
 
     async function getUsuarioUsername(username){
         try{
-            let results = await usuariosRepository.retrieve({username});
-            return results[0];
+            let results = await usuariosRepository.getRawConnection().raw(queries.get_by_name, [username]);
+            return results[0][0];
         } catch(err){
             throw err;
         }

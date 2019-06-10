@@ -11,8 +11,8 @@ export const BooksRepository = () => {
 
     async function getBooks(){
         try{
-            let results = await booksRepository.retrieve();
-            return results;
+            let results = await booksRepository.getRawConnection().raw(queries.get_books, []);
+            return results[0];
         } catch(err){
             throw err;
         }
@@ -20,8 +20,8 @@ export const BooksRepository = () => {
 
     async function getBook(id){
         try{
-            let results = await booksRepository.retrieve({id});
-            return results[0];
+            let results = await booksRepository.getRawConnection().raw(queries.get_book, [id]);
+            return results[0][0];
         } catch(err){
             throw err;
         }
@@ -30,7 +30,7 @@ export const BooksRepository = () => {
     async function updateBook(book){
         try{
             let url;
-            if(book.cover.includes("data:image/png;base64")) {
+            if(!book.cover.includes("techtest-aczc.s3.us-west-2.amazonaws.com")) {
                 url = await fn.uploadToS3(book.cover, book.title);
                 url = url.imageUrl;
             } else {
@@ -39,7 +39,7 @@ export const BooksRepository = () => {
             book.cover = url;
             let editedBook = 
             await booksRepository.getRawConnection().raw(queries.update_book, 
-            [book.title, book.ISBN, book.quantity, book.genre, book.author, book.pages, book.id]);
+            [book.title, book.ISBN, book.quantity, book.genre, book.author, book.pages, book.cover, book.id]);
             return book.id;
         } catch(err){
             throw err;

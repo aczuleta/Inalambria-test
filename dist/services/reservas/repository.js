@@ -111,7 +111,7 @@ var ReservasRepository = function ReservasRepository() {
     _getReservasUsuario = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
     _regenerator["default"].mark(function _callee3(id) {
-      var results, reserva;
+      var results, reservas;
       return _regenerator["default"].wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -122,20 +122,23 @@ var ReservasRepository = function ReservasRepository() {
 
             case 3:
               results = _context3.sent;
-              reserva = results[0][0];
-              return _context3.abrupt("return", createVerbose(reserva));
+              reservas = results[0];
+              results = reservas.map(function (reserva) {
+                return createVerbose(reserva);
+              });
+              return _context3.abrupt("return", results);
 
-            case 8:
-              _context3.prev = 8;
+            case 9:
+              _context3.prev = 9;
               _context3.t0 = _context3["catch"](0);
               throw _context3.t0;
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[0, 8]]);
+      }, _callee3, null, [[0, 9]]);
     }));
     return _getReservasUsuario.apply(this, arguments);
   }
@@ -148,31 +151,34 @@ var ReservasRepository = function ReservasRepository() {
     _getReservasLibro = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
     _regenerator["default"].mark(function _callee4(id) {
-      var results, reserva;
+      var results, reservas;
       return _regenerator["default"].wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return reservasRepository.getRawConnection().raw(_queries.queries.get_book_reservas, [id]);
+              return reservasRepository.getRawConnection().raw(_queries.queries.get_book_reservas, [+id]);
 
             case 3:
               results = _context4.sent;
-              reserva = results[0][0];
-              return _context4.abrupt("return", createVerbose(reserva));
+              reservas = results[0];
+              results = reservas.map(function (reserva) {
+                return createVerbose(reserva);
+              });
+              return _context4.abrupt("return", results);
 
-            case 8:
-              _context4.prev = 8;
+            case 9:
+              _context4.prev = 9;
               _context4.t0 = _context4["catch"](0);
               throw _context4.t0;
 
-            case 11:
+            case 12:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 8]]);
+      }, _callee4, null, [[0, 9]]);
     }));
     return _getReservasLibro.apply(this, arguments);
   }
@@ -288,7 +294,7 @@ var ReservasRepository = function ReservasRepository() {
 
   function createVerbose(reserva) {
     var persona = (0, _model3.usuarioModel)(reserva.username, reserva.fullname, reserva.rol, reserva.multado);
-    var libro = (0, _model2.bookModel)(reserva.title, reserva.ISBN, reserva.quantity, reserva.genre, reserva.author, reserva.pages);
+    var libro = (0, _model2.bookModel)(reserva.title, reserva.ISBN, reserva.quantity, reserva.genre, reserva.author, reserva.pages, reserva.cover);
     var verbose = (0, _model.verboseReservaModel)(reserva.id, reserva.idLibro, reserva.idPersona, reserva.fechaCheckout, reserva.fechaRetorno, reserva.fechaRetornado, persona, libro);
     return verbose;
   }

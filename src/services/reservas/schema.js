@@ -16,16 +16,14 @@ export default gql`
         deleteReserva(id:ID!):ID!
     }
 
-    scalar GraphQLDateTime
-    
     type reserva {
         id: ID!
         idPersona: Int!
         idLibro: Int!,
         persona: usuario!,
         libro: book!
-        fechaCheckout: GraphQLDateTime!, 
-        fechaRetorno: GraphQLDateTime!, 
-        fechaRetornado: GraphQLDateTime
+        fechaCheckout: String!, 
+        fechaRetorno: String!, 
+        fechaRetornado: String
     }
 `;
