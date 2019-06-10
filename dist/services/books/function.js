@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.movesFunction = void 0;
+exports.bookFunction = void 0;
 
 var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
 
@@ -19,7 +19,7 @@ var _moment = _interopRequireDefault(require("moment"));
 
 require('dotenv').config();
 
-var movesFunction = function movesFunction() {
+var bookFunction = function bookFunction() {
   var S3; // Set the region 
 
   var REGION = 'us-east-1';
@@ -69,7 +69,7 @@ var movesFunction = function movesFunction() {
   function _uploadToS() {
     _uploadToS = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
-    _regenerator["default"].mark(function _callee3(imageBase64, moveName) {
+    _regenerator["default"].mark(function _callee3(imageBase64, bookName) {
       var base64Data, type, params;
       return _regenerator["default"].wrap(function _callee3$(_context3) {
         while (1) {
@@ -79,7 +79,7 @@ var movesFunction = function movesFunction() {
               base64Data = new Buffer(imageBase64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
               type = imageBase64.split(';')[0].split('/')[1];
               params = (0, _objectSpread2["default"])({}, paramsS3, {
-                Key: "inalambria/".concat(moveName, "-").concat(Date.now().toString(), ".png"),
+                Key: "inalambria/".concat(bookName, "-").concat(Date.now().toString(), ".png"),
                 Body: base64Data,
                 ContentType: "image/".concat(type)
               });
@@ -133,4 +133,4 @@ var movesFunction = function movesFunction() {
   };
 };
 
-exports.movesFunction = movesFunction;
+exports.bookFunction = bookFunction;

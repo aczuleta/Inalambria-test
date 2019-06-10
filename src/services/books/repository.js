@@ -1,11 +1,14 @@
 import {dataRepository} from '../../utils/dataRepository';
 import {queries} from './queries';
 import {bookModel} from './model';
+import {bookFunction} from './function';
 
 const booksRepository = dataRepository("books");
+const fn = bookFunction();
 
 export const BooksRepository = () => {
     
+
     async function getBooks(){
         try{
             let results = await booksRepository.retrieve();
@@ -26,6 +29,14 @@ export const BooksRepository = () => {
 
     async function updateBook(book){
         try{
+            let url;
+            if(book.cover.includes("data:image/png;base64")) {
+                url = await fn.uploadToS3(book.cover, book.title);
+                url = url.imageUrl;
+            } else {
+                url = book.cover;
+            }
+            book.cover = url;
             let editedBook = 
             await booksRepository.getRawConnection().raw(queries.update_book, 
             [book.title, book.ISBN, book.quantity, book.genre, book.author, book.pages, book.id]);
@@ -37,6 +48,9 @@ export const BooksRepository = () => {
 
     async function createBook(book){
         try{
+            let url = book.cover ? await fn.uploadToS3(book.cover, book.title) : "";
+            url = url ? url.imageUrl : "";
+            book.cover = url;
             let newBook = await booksRepository.getRawConnection().raw(queries.insert_book, [...Object.values(book)]);
             newBook = newBook[0].insertId;
             return newBook;

@@ -22,18 +22,18 @@ export default {
         }
     },
     Mutation: {
-        createBook: async (parent, {title, ISBN, quantity, genre, author, pages}, {}) => {
+        createBook: async (parent, {title, ISBN, quantity, genre, author, pages, cover}, {}) => {
             try{
-                const book = bookModel(title, ISBN, quantity, genre, author, pages);
+                const book = bookModel(title, ISBN, quantity, genre, author, pages, cover);
                 const result = await booksRepository.createBook(book);
                 return result;
             }catch(err){
                 throw err;
             }
         },
-        updateBook: async (parent, {id, title, ISBN, quantity, genre, author, pages}, {}) => {
+        updateBook: async (parent, {id, title, ISBN, quantity, genre, author, pages, cover}, {}) => {
             try{
-                let book = bookModel(title, ISBN, quantity, genre, author, pages);
+                let book = bookModel(title, ISBN, quantity, genre, author, pages, cover);
                 book.id = +id;
                 const result = await booksRepository.updateBook(book);
                 return result;

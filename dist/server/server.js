@@ -43,7 +43,10 @@ var Server = function Server() {
   var server = new _apolloServerExpress.ApolloServer({
     typeDefs: _schema["default"],
     resolvers: _resolver["default"],
-    context: {}
+    context: {},
+    introspection: true,
+    // enables introspection of the schema
+    playground: true
   });
 
   function start() {

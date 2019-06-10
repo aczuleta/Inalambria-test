@@ -102,15 +102,15 @@ var _default = {
       var _createBook = (0, _asyncToGenerator2["default"])(
       /*#__PURE__*/
       _regenerator["default"].mark(function _callee3(parent, _ref5, _ref6) {
-        var title, ISBN, quantity, genre, author, pages, book, result;
+        var title, ISBN, quantity, genre, author, pages, img, book, result;
         return _regenerator["default"].wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                title = _ref5.title, ISBN = _ref5.ISBN, quantity = _ref5.quantity, genre = _ref5.genre, author = _ref5.author, pages = _ref5.pages;
+                title = _ref5.title, ISBN = _ref5.ISBN, quantity = _ref5.quantity, genre = _ref5.genre, author = _ref5.author, pages = _ref5.pages, img = _ref5.img;
                 (0, _objectDestructuringEmpty2["default"])(_ref6);
                 _context3.prev = 2;
-                book = (0, _model.bookModel)(title, ISBN, quantity, genre, author, pages);
+                book = (0, _model.bookModel)(title, ISBN, quantity, genre, author, pages, img);
                 _context3.next = 6;
                 return booksRepository.createBook(book);
 

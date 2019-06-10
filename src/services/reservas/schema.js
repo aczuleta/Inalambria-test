@@ -11,7 +11,7 @@ export default gql`
     }
 
     extend type Mutation {
-        createReserva(idPersona:ID!, idLibro:ID!): ID!,
+        createReserva(idPersona:Int!, idLibro:Int!): ID!,
         returnBook(id:ID!): ID!,
         deleteReserva(id:ID!):ID!
     }
@@ -20,8 +20,8 @@ export default gql`
     
     type reserva {
         id: ID!
-        idPersona: ID!
-        idLibro: ID!,
+        idPersona: Int!
+        idLibro: Int!,
         persona: usuario!,
         libro: book!
         fechaCheckout: GraphQLDateTime!, 

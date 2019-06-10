@@ -7,8 +7,8 @@ export default gql`
     }
 
     extend type Mutation {
-        createBook(title:String!, ISBN:String!, quantity:Int!, genre:String!, author:String!, pages:Int!): ID!,
-        updateBook(id:ID!, title:String!, ISBN:String!, quantity:Int!, genre:String!, author:String!, pages:Int!): ID!,
+        createBook(title:String!, ISBN:String!, quantity:Int!, genre:String!, author:String!, pages:Int!, cover:String): ID!,
+        updateBook(id:ID!, title:String!, ISBN:String!, quantity:Int!, genre:String!, author:String!, pages:Int!, cover:String!): ID!,
         deleteBook(id:ID!):ID!
     }
     
@@ -20,5 +20,6 @@ export default gql`
         genre: String!
         author: String!
         pages: Int!
+        cover:String
     }
 `;

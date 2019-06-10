@@ -122,7 +122,7 @@ export default {
                  }
                  
                  //Procedemos a devolver el libro, actualizando su cantidad disponible
-                 let book = await bookRepository.getBook(reserva.idLibro);
+                 let book = await bookRepository.getBook(+reserva.idLibro);
                  book.quantity++;
                  await bookRepository.updateBook(book);
 

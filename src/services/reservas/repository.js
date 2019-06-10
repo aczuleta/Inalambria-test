@@ -37,8 +37,11 @@ export const ReservasRepository = () => {
         try{
             let results = 
             await reservasRepository.getRawConnection().raw(queries.get_user_reservas, [id]);
-            let reserva = results[0][0];
-            return createVerbose(reserva);
+            let reservas = results[0];
+            results = reservas.map(reserva => {
+                return createVerbose(reserva);
+            });
+            return results;
         } catch(err){
             throw err;
         }
@@ -47,9 +50,12 @@ export const ReservasRepository = () => {
     async function getReservasLibro(id){
         try{
             let results = 
-            await reservasRepository.getRawConnection().raw(queries.get_book_reservas, [id]);
-            let reserva = results[0][0];
-            return createVerbose(reserva);
+            await reservasRepository.getRawConnection().raw(queries.get_book_reservas, [+id]);
+            let reservas = results[0];
+            results = reservas.map(reserva => {
+                return createVerbose(reserva);
+            });
+            return results;
         } catch(err){
             throw err;
         }
@@ -91,7 +97,7 @@ export const ReservasRepository = () => {
         reserva.rol, reserva.multado);
 
         const libro = bookModel(reserva.title, reserva.ISBN,
-        reserva.quantity, reserva.genre, reserva.author, reserva.pages);
+        reserva.quantity, reserva.genre, reserva.author, reserva.pages, reserva.cover);
 
         const verbose = verboseReservaModel(reserva.id, reserva.idLibro, reserva.idPersona,
         reserva.fechaCheckout, reserva.fechaRetorno, reserva.fechaRetornado, persona, libro);

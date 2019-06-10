@@ -2,7 +2,7 @@ import AWS from 'aws-sdk';
 import moment from 'moment';
 require('dotenv').config();
 
-export const movesFunction = () => {
+export const bookFunction = () => {
 
     let S3;
 
@@ -26,13 +26,13 @@ export const movesFunction = () => {
         S3 = new AWS.S3();    
     }
 
-    async function uploadToS3(imageBase64, moveName){
+    async function uploadToS3(imageBase64, bookName){
         loadAwsConfig();
         let base64Data = new Buffer(imageBase64.replace(/^data:image\/\w+;base64,/, ""), 'base64')
         let type = imageBase64.split(';')[0].split('/')[1]
         let params = {
             ...paramsS3,
-            Key: `inalambria/${moveName}-${Date.now().toString()}.png`,
+            Key: `inalambria/${bookName}-${Date.now().toString()}.png`,
             Body: base64Data,
             ContentType: `image/${type}`
         }

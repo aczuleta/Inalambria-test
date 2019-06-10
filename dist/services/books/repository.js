@@ -19,7 +19,10 @@ var _queries = require("./queries");
 
 var _model = require("./model");
 
+var _function = require("./function");
+
 var booksRepository = (0, _dataRepository.dataRepository)("books");
+var fn = (0, _function.bookFunction)();
 
 var BooksRepository = function BooksRepository() {
   function getBooks() {
@@ -140,31 +143,52 @@ var BooksRepository = function BooksRepository() {
     _createBook = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
     _regenerator["default"].mark(function _callee4(book) {
-      var newBook;
+      var url, newBook;
       return _regenerator["default"].wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.prev = 0;
-              _context4.next = 3;
+
+              if (!book.cover) {
+                _context4.next = 7;
+                break;
+              }
+
+              _context4.next = 4;
+              return fn.uploadToS3(move.imageRoute, book.title);
+
+            case 4:
+              _context4.t0 = _context4.sent;
+              _context4.next = 8;
+              break;
+
+            case 7:
+              _context4.t0 = "";
+
+            case 8:
+              url = _context4.t0;
+              url = url ? url.imageUrl : "";
+              book.cover = url;
+              _context4.next = 13;
               return booksRepository.getRawConnection().raw(_queries.queries.insert_book, (0, _toConsumableArray2["default"])(Object.values(book)));
 
-            case 3:
+            case 13:
               newBook = _context4.sent;
               newBook = newBook[0].insertId;
               return _context4.abrupt("return", newBook);
 
-            case 8:
-              _context4.prev = 8;
-              _context4.t0 = _context4["catch"](0);
-              throw _context4.t0;
+            case 18:
+              _context4.prev = 18;
+              _context4.t1 = _context4["catch"](0);
+              throw _context4.t1;
 
-            case 11:
+            case 21:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 8]]);
+      }, _callee4, null, [[0, 18]]);
     }));
     return _createBook.apply(this, arguments);
   }
