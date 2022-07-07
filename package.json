@@ -50,7 +50,7 @@
     "graphql-type-datetime": "^0.2.4",
     "helmet": "^3.18.0",
     "knex": "^0.17.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mysql": "^2.17.1"
   },
   "devDependencies": {
